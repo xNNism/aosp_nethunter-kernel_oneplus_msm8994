@@ -38,7 +38,8 @@ static bool disable_scofix;
 static bool force_scofix;
 
 static int sco_conn;
-static int reset = 1;
+static bool reset = true;
+/*static int reset = 1;*/
 
 static struct usb_driver btusb_driver;
 
@@ -1386,11 +1387,11 @@ static int btusb_probe(struct usb_interface *intf,
 	if (ignore_sniffer && id->driver_info & BTUSB_SNIFFER)
 		return -ENODEV;
 
-	if (id->driver_info & BTUSB_ATH3012) {
+	/* if (id->driver_info & BTUSB_ATH3012) {
 		struct usb_device *udev = interface_to_usbdev(intf);
 		/* Old firmware would otherwise let ath3k driver load
 		 * patch and sysconfig files */
-		err = get_rome_version(udev, &version);
+		/*err = get_rome_version(udev, &version);
 		if (err < 0) {
 			if (le16_to_cpu(udev->descriptor.bcdDevice) <= 0x0001)
 				BT_INFO("FW for ar3k is yet to be downloaded");
@@ -1404,7 +1405,7 @@ static int btusb_probe(struct usb_interface *intf,
 			BT_ERR("Failed to download ROME firmware");
 			return -ENODEV;
 		}
-	}
+	} */
 
 	data = devm_kzalloc(&intf->dev, sizeof(*data), GFP_KERNEL);
 	if (!data)
