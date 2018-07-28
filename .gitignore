@@ -12,6 +12,10 @@
 bin/
 gen/
 out/
+output/
+build.sh
+clean.sh
+mrproper.sh
 
 # Gradle files
 .gradle/
